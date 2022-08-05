@@ -1,0 +1,39 @@
+/*문자열 s는 한 개 이상의 단어로 구성되어 있습니다. 
+각 단어는 하나 이상의 공백문자로 구분되어 있습니다. 
+각 단어의 짝수번째 알파벳은 대문자로, 홀수번째 알파벳은 소문자로 
+바꾼 문자열을 리턴하는 함수, solution을 완성하세요.*/
+
+import java.util.*;
+
+public class strange {
+	
+	public static String solution(String s) {
+        String answer = "";
+        String[] str = s.split(""); //받아온 문자열을 공백 기준으로 나누어 배열에 저장
+        
+        int idx = 0; //공백일 경우 다음 인덱스로 이동해야 함
+        
+        for(int i=0; i<str.length; i++) {
+            if(str[i].equals(" ")) {
+                idx = 0; //i번째가 공백일 경우 0으로 초기화			
+            } else if(idx % 2 == 0) {
+                str[i] = str[i].toUpperCase(); //짝수번째 대문자로 변환
+                idx++;
+            } else if(idx % 2 != 0) {
+                str[i] = str[i].toLowerCase(); //홀수번째 소문자로 변환
+                idx++;
+            }
+            answer += str[i];
+        } 
+        
+        return answer;
+    }
+	public static void main(String[] args) {
+		
+		String s = "puppy love";
+		
+	    System.out.println(solution(s));
+	    
+		
+	}
+}
